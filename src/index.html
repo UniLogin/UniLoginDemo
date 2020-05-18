@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>Universal Login Provider demo</title>
+    <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <button id="unilogin-button"></button>
+    <script src="https://unpkg.com/@unilogin/provider"></script>
+    <script>
+        window.web3 = new Web3(ULIFrameProvider.create(window.ethereum || 'mainnet'))
+    </script>
+</body>
+
+</html>
