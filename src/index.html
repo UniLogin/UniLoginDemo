@@ -18,26 +18,26 @@
     </button>
     </br>
     <button style='width: 26em;' onclick='web3.eth.requestAccounts().then(accounts => {
-        var count = web3.eth.getTransactionCount(accounts[0]);
-        var abiArray = accounts[0].abiArray;
-        var contractAddress = document.getElementById("address").value;
-        var contract = accounts[0].contract;
-        var rawTransaction = {
+        const count = web3.eth.getTransactionCount(accounts[0]);
+        const abiArray = JSON.parse(fs.readFileSync("dai.json", "utf-8"));
+        const contractAddress = document.getElementById("address").value;
+        const contract = web3.eth.contract(abiArray).at(contractAddress);
+        const rawTransaction = {
             "from": accounts[0],
             "nonce": web3.toHex(count),
             "gasPrice": accounts[0].gasPrice,
             "gasLimit": accounts[0].gasLimit,
             "to": contractAddress,
-            "value": "1",
+            "value": "0x1",
             "data": accounts[0].data,
             "chainId": 0x03
         };
 
-        var privKey = accounts[0].privKey;
-        var tx = new Tx(rawTransaction);
+        const privKey = accounts[0].privKey;
+        const tx = new Tx(rawTransaction);
 
         tx.sign(privKey);
-        var serializedTx = tx.serialize();
+        const serializedTx = tx.serialize();
 
         web3.eth.sendRawTransaction("0x" + serializedTx.toString("hex"), function(err, hash) {
             if (!err)
