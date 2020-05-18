@@ -10,7 +10,7 @@
     <button id="unilogin-button"></button>
     <script src="https://unpkg.com/@unilogin/provider"></script>
     <script>
-        window.web3 = new Web3(ULIFrameProvider.create(window.ethereum || 'mainnet'))
+        window.web3 = new Web3(ULIFrameProvider.create('mainnet'))
     </script>
     </br></br><input id='address' type="text" maxlength="42" width="100"></input></br>
     <button onclick="web3.eth.requestAccounts().then(accounts => {console.log({accounts});web3.eth.sendTransaction({from: accounts[0], to: document.getElementById('address').value, value: 0.01}).then(({transactionHash}) => console.log({transactionHash}))})">
